@@ -22,7 +22,7 @@ public class WordHunt
 
     int wp = 0; // Word Arr Pointer
 
-    // Parsing ajjacency matrix
+    // Parsing adjacency matrix
     Scanner scan = new Scanner(new File("basicMatrix.txt"));
     for (int i = 0; i < NODE_COUNT; i++)
       for (int j = 0; j < NODE_COUNT; j++)
@@ -92,12 +92,12 @@ public class WordHunt
     while (i.hasNext())
     {
       curr = i.next();
+
+      // Since ArrList is used this fixes duplicates
       if (curr.compareTo(prev) != 0)
         out.write(curr + "\n");
       prev = curr;
     }
-
-
 
     out.close();
   }
