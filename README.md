@@ -1,8 +1,8 @@
 # WordHunt
 
-To use
-  javac WordHunt.java<br>
-  Insert 16 letters to board.txt<br>
-  java WordHunt<br>
+*Usage*<br>
+  - javac WordHunt.java
+  - Insert 16 letters to board.txt
+  - java WordHunt
 
-Output is in out.txt
+***Output is in out.txt***
