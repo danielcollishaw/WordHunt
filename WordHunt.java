@@ -1,6 +1,10 @@
-// Written by Daniel Collishaw
-// Solves WordHunt Game Pigeon
-// Input letters into board.txt
+// Author Daniel Collishaw
+// Modified 10/25/21
+//
+// The purpose of this program was to show a culmuniation of skill sets by
+// solving a problem using graph theory. It implements a modified depth first
+// search with backtracking to check for all possible words that can be
+// formed given a 4 x 4 letter board.
 
 import java.io.*;
 import java.util.*;
@@ -8,12 +12,14 @@ import java.util.*;
 public class WordHunt
 {
   private static final int NODE_COUNT = 16;
-  private boolean[][] matrix = new boolean[NODE_COUNT][NODE_COUNT];
 
+  private boolean[][] matrix = new boolean[NODE_COUNT][NODE_COUNT];
   private char[] words;
   private HashSet<String> dict;
   private ArrayList<String> solved;
 
+  // Constructor
+  // Parses input files and stores their contents as graph properties
   WordHunt() throws IOException
   {
     this.words = new char[NODE_COUNT];
@@ -38,7 +44,7 @@ public class WordHunt
           this.words[wp++] = line.charAt(i);
     }
 
-    // Making dictionary
+    // Storing words into hashmap for quick retrieval
     scan = new Scanner(new File("dict.txt"));
     while (scan.hasNext())
     {
@@ -64,7 +70,7 @@ public class WordHunt
       {
         runDFS(i, visited, out + words[i]);
 
-        // Removes it from visted to check another possible permutation
+        // Backtracks from visted to check another possible permutation
         visited[i] = false;
 
         // Checks to see if it is a valid word
@@ -93,7 +99,7 @@ public class WordHunt
     {
       curr = i.next();
 
-      // Since ArrList is used this fixes duplicates
+      // Since arr list is used this avoids writing multiple occurance to file
       if (curr.compareTo(prev) != 0)
         out.write(curr + "\n");
       prev = curr;
@@ -102,6 +108,7 @@ public class WordHunt
     out.close();
   }
 
+  // Driver code
   public static void main(String args[]) throws IOException
   {
     WordHunt board = new WordHunt();
